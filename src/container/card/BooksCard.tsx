@@ -1,5 +1,6 @@
 import { Itype} from '@/app/type/BookType'
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 interface BookProps {
     book : Itype
@@ -39,9 +40,9 @@ const BooksCard = ({book}:BookProps) => {
                 </svg>
                   <span className="text-black font-medium text-lg">{book.rating}</span>
              </div>
-              <button className="mt-4 w-full rounded-lg bg-blue-600 py-2 font-semibold text-white transition hover:bg-blue-700">
+              <Link href={`/books/${book.bookId}`}><button className="mt-4 w-full rounded-lg bg-blue-600 py-2 font-semibold text-white transition hover:bg-blue-700">
                 View Details
-              </button>
+              </button></Link>
             </div>
           </div>
   )

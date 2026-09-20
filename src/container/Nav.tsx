@@ -1,13 +1,14 @@
 import Image from "next/image";
 import React from "react";
 import Logo from "@/assets/book.ico";
+import Link from "next/link";
 
 const Nav = () => {
   const link = (
     <>
-      <li>Home</li>
-      <li>Listed Books</li>
-      <li>Pages to Read</li>
+      <Link href={"/"}>Home</Link>
+      <Link href={'/books'}>Listed Books</Link>
+      <Link href={"./listed-book"} >Pages to Read</Link>
     </>
   );
   return (

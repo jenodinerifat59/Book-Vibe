@@ -18,7 +18,7 @@ const Books = async () => {
       </h2>
 
       <div className="grid grid-cols-1 gap-6 p-6 sm:grid-cols-2 lg:grid-cols-3">
-        {booksData.map((book:Itype) => (
+        {booksData.slice(0,6).map((book:Itype) => (
           <BooksCard key={book.bookId} book={book}/>
         ))}
       </div>
