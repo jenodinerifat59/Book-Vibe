@@ -1,5 +1,5 @@
 import React from "react";
-import type { Itype } from "@/app/type/BookType";
+import type { BookType } from "@/app/type/BookType";
 import Image from "next/image";
 import ReadBtn from "@/container/btnContainer/ReadBtn";
 import WishlistBtn from "@/container/btnContainer/WishlistBtn";
@@ -18,10 +18,10 @@ interface BpType {
 const BookPage = async ({ params }: BpType) => {
   const { bookId } = await params;
 
-  const booksdata: Itype[] = await getBooksData();
+  const booksdata: BookType[] = await getBooksData();
 
   const book = booksdata.find(
-    (book: Itype) => book.bookId === Number(bookId)
+    (book: BookType) => book.bookId === Number(bookId)
   );
 
   if (!book) {

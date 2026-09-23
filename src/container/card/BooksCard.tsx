@@ -1,9 +1,9 @@
-import { Itype} from '@/app/type/BookType'
+import { BookType} from '@/app/type/BookType'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 interface BookProps {
-    book : Itype
+    book : BookType
 }
 const BooksCard = ({book}:BookProps) => {
   return (

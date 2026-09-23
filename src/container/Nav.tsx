@@ -8,7 +8,8 @@ const Nav = () => {
     <>
       <Link href={"/"}>Home</Link>
       <Link href={'/books'}>Listed Books</Link>
-      <Link href={"./listed-book"} >Pages to Read</Link>
+      <Link href={"/listed-book"} >Pages to Read</Link>
+      <Link href={"./read-books"} >Read-Book-Graph</Link>
     </>
   );
   return (

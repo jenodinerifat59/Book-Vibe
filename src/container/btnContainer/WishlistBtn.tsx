@@ -1,30 +1,63 @@
-'use client'
-import React, { useContext } from 'react'
+"use client";
 
-import { BookContext } from '@/context/BookContex';
-import { BookType } from '@/app/type/BookType';
-import { Bounce, toast } from 'react-toastify';
+import React, { useContext } from "react";
+import { BookContext } from "@/context/BookContex";
+import type { BookType } from "@/app/type/BookType";
+import { Bounce, toast } from "react-toastify";
 
-const ReadBtn = ({book}: {book:BookType}) => {
-    const {wishlist,setWishlist} = useContext(BookContext)
-    const handelClick = ()=>{
-        setWishlist([...wishlist,book])
-        toast(`${book.bookName} Read section added succesfully`, {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: false,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-      transition: Bounce,
-    });
+type WishlistBtnProps = {
+  book: BookType;
+};
+
+const WishlistBtn = ({ book }: WishlistBtnProps) => {
+  const { wishlist, setWishlist } = useContext(BookContext) as {
+    wishlist: BookType[];
+    setWishlist: React.Dispatch<React.SetStateAction<BookType[]>>;
+  };
+
+  const handleClick = () => {
+    const alreadyExists = wishlist.some(
+      (item: BookType) => item.bookId === book.bookId
+    );
+
+    if (alreadyExists) {
+      toast.warning(
+        `${book.bookName} is already in your wishlist!`,
+        {
+          position: "top-center",
+          autoClose: 3000,
+          theme: "light",
+          transition: Bounce,
+        }
+      );
+
+      return;
     }
-    console.log(wishlist)
-  return (
-    <button onClick={()=>handelClick()} className="btn btn-primary btn-lg w-full sm:w-auto px-8"> Add To WistList </button>
-  )
-}
 
-export default ReadBtn
+    setWishlist([...wishlist, book]);
+
+    toast.success(
+      `${book.bookName} added to wishlist successfully!`,
+      {
+        position: "top-center",
+        autoClose: 3000,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "light",
+        transition: Bounce,
+      }
+    );
+  };
+
+  return (
+    <button
+      onClick={handleClick}
+      className="btn btn-primary btn-lg w-full px-8 sm:w-auto"
+    >
+      Add To Wishlist
+    </button>
+  );
+};
+
+export default WishlistBtn;
